@@ -1,0 +1,14 @@
+# Ignorar migraciones
+**/migrations/*
+!**/migrations/__init__.py
+
+# Archivos temporales
+*.pyc
+__pycache__/
+
+# Archivos de configuración local
+db.sqlite3
+.env
+
+# Archivos del entorno virtual
+venv/

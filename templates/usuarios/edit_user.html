@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Editar Usuario</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" value="{{ user.name }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" placeholder="Deja en blanco para no cambiarla">
+
+        <label for="role">Rol:</label>
+        <select id="role" name="role" required>
+            <option value="student" {% if user.role == "student" %}selected{% endif %}>Estudiante</option>
+            <option value="company" {% if user.role == "company" %}selected{% endif %}>Empresa</option>
+        </select>
+
+        <label for="skills">Habilidades:</label>
+        <textarea id="skills" name="skills" rows="3">{{ user.skills }}</textarea>
+
+        <label for="requirements">Requisitos:</label>
+        <textarea id="requirements" name="requirements" rows="3">{{ user.requirements }}</textarea>
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+</body>
+</html>
+
